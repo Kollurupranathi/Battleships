@@ -167,7 +167,15 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isHorizontal(ship):
-    return
+  temp =[]
+  for i in range(len(ship)):
+        temp.append(ship[i][1])
+  temp.sort()
+  for i in range(len(ship)-1):
+        if ship[i][0]!=ship[i+1][0] or temp[i]!=temp[i+1]-1:
+            return False
+  return True
+    
 
 
 '''
@@ -318,6 +326,6 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
     # test.testCheckShip()
-     test.testIsVertical()
+     test.testIsHorizontal()
     ## Finally, run the simulation to test it manually ##
     # runSimulation(500, 500)
