@@ -155,10 +155,9 @@ def isVertical(ship):
     for i in range(len(ship)):
         temp.append(ship[i][0])
     temp.sort()
-    for i in range(len(ship)-1):
-        if ship[i][1]!=ship[i+1][1] or temp[i]!=temp[i+1]-1:
-            return False
-    return True
+    if ship[0][1]==ship[1][1]==ship[2][1] and temp[0]==temp[1]-1==temp[2]-2:
+        return True
+    return False
 
   
 '''
@@ -171,10 +170,9 @@ def isHorizontal(ship):
   for i in range(len(ship)):
         temp.append(ship[i][1])
   temp.sort()
-  for i in range(len(ship)-1):
-        if ship[i][0]!=ship[i+1][0] or temp[i]!=temp[i+1]-1:
-            return False
-  return True
+  if ship[0][0]==ship[1][0]==ship[2][0] and temp[0]==temp[1]-1==temp[2]-2:
+     return True
+  return False
     
 
 
@@ -326,6 +324,6 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
     # test.testCheckShip()
-     test.testIsHorizontal()
+    test.testIsVertical()
     ## Finally, run the simulation to test it manually ##
-    # runSimulation(500, 500)
+    #runSimulation(500, 500)
