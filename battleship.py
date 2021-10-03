@@ -226,7 +226,7 @@ def placeShip(data):
            user_board[temp_ship[i[0]]][temp_ship[i[1]]]= SHIP_UNCLICKED
     else:
       print("Ship is not valid") 
-    data["tempship"]=[]       
+    data["tempship"]=[]   
     
 
 
