@@ -31,8 +31,9 @@ def makeModel(data):
     data["cols"]=10
     data["cellsize"]= data["boardsize"]/data["rows"]
     data["numships"]=5
-    data["usergrid"]= test.testGrid()#emptyGrid(data["rows"],data["cols"])  test.testGrid()
+    data["usergrid"]= emptyGrid(data["rows"],data["cols"])  #test.testGrid()
     data["computergrid"]= addShips(emptyGrid(data["rows"],data["cols"]),data["numships"])
+    data["tempship"]= [] #test.testShip()#createShip()
 
 
 '''
@@ -41,9 +42,10 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
-    userCanvas= drawGrid(data, userCanvas, data["usergrid"], True)
-    compCanvas = drawGrid(data, compCanvas, data["computergrid"], True)
-    return
+    usercanvas = drawGrid(data, userCanvas, data["usergrid"], True)
+    compcanvas = drawGrid(data, compCanvas, data["computergrid"], True)
+    emptyboard = drawShip(data, userCanvas, data["tempship"]) 
+    return 
 
 
 '''
@@ -194,6 +196,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
+    for i in range(len(ship)):
+     canvas.create_rectangle(data["cellsize"]*ship[i][1], data["cellsize"]*ship[i][0], data["cellsize"]*(ship[i][1]+1), data["cellsize"]*(ship[i][0]+1), fill= "white")
     return
 
 
@@ -327,6 +331,6 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
     # test.testCheckShip()
-    test.testGetClickedCell()
+   # test.testDrawShip()
     ## Finally, run the simulation to test it manually ##
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
