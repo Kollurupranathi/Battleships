@@ -246,8 +246,8 @@ def clickUserBoard(data, row, col):
        return
     if [row,col] == data["tempship"]:
        return 
-    #if [row,col] not in data["tempship"]:
-    data["tempship"].append([row,col])
+    if [row,col] not in data["tempship"]:
+      data["tempship"].append([row,col])
     if len(data["tempship"])==3:
         placeShip(data)   
     return
