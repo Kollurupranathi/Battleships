@@ -220,10 +220,9 @@ Returns: None
 '''
 def placeShip(data):
     user_board = data["usergrid"]
-    temp_ship = data["tempship"]
-    if shipIsValid(user_board,temp_ship):
-        for i in range(len(temp_ship)):
-           user_board[temp_ship[i[0]]][temp_ship[i[1]]]= SHIP_UNCLICKED
+    if shipIsValid(user_board,data["tempship"]):
+        for i in data["tempship"]:
+           user_board[i[0]][i[1]]= SHIP_UNCLICKED
     else:
       print("Ship is not valid") 
     data["tempship"]=[]   
