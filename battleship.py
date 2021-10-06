@@ -162,10 +162,11 @@ def isVertical(ship):
     for i in range(len(ship)):
         temp.append(ship[i][0])
     temp.sort()
-    if ship[0][1]==ship[1][1]==ship[2][1] and temp[0]==temp[1]-1==temp[2]-2:
-        return True
-    return False
-
+    for i in range(len(ship)-1):
+        if ship[i][1]!=ship[i+1][1] or temp[i]!=temp[i+1]-1:
+            return False
+    return True
+ 
   
 '''
 isHorizontal(ship)
@@ -175,11 +176,12 @@ Returns: bool
 def isHorizontal(ship):
   temp =[]
   for i in range(len(ship)):
-        temp.append(ship[i][1])
+    temp.append(ship[i][1])
   temp.sort()
-  if ship[0][0]==ship[1][0]==ship[2][0] and temp[0]==temp[1]-1==temp[2]-2:
-     return True
-  return False
+  for i in range(len(ship)-1):
+      if ship[i][0]!=ship[i+1][0] or temp[i]!=temp[i+1]-1:
+          return False
+  return True
     
 
 
@@ -212,9 +214,10 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-    if checkShip(grid,ship):
-      if isHorizontal(ship) or isVertical(ship):
-        return True
+    if len(ship)==3:
+        if checkShip(grid,ship):
+            if isHorizontal(ship) or isVertical(ship):
+                return True
     return False
 
 
@@ -241,10 +244,10 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def clickUserBoard(data, row, col):
-    if data["userships"]==5:
+    if data["userships"]== data["numships"]:
        print("You can start the game")
        return
-    if [row,col] == data["tempship"]:
+    if [row,col] in data["tempship"]:
        return 
     if [row,col] not in data["tempship"]:
       data["tempship"].append([row,col])
