@@ -241,7 +241,7 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def clickUserBoard(data, row, col):
-    if data["userships"]==5:
+    if data["userships"]== data["numships"]:
        print("You can start the game")
        return
     if [row,col] in data["tempship"]:
