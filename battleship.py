@@ -157,10 +157,11 @@ def isVertical(ship):
     for i in range(len(ship)):
         temp.append(ship[i][0])
     temp.sort()
-    if ship[0][1]==ship[1][1]==ship[2][1] and temp[0]==temp[1]-1==temp[2]-2:
-        return True
-    return False
-
+    for i in range(len(ship)-1):
+        if ship[i][1]!=ship[i+1][1] or temp[i]!=temp[i+1]-1:
+            return False
+    return True
+ 
   
 '''
 isHorizontal(ship)
@@ -170,11 +171,12 @@ Returns: bool
 def isHorizontal(ship):
   temp =[]
   for i in range(len(ship)):
-        temp.append(ship[i][1])
+    temp.append(ship[i][1])
   temp.sort()
-  if ship[0][0]==ship[1][0]==ship[2][0] and temp[0]==temp[1]-1==temp[2]-2:
-     return True
-  return False
+  for i in range(len(ship)-1):
+      if ship[i][0]!=ship[i+1][0] or temp[i]!=temp[i+1]-1:
+          return False
+  return True
     
 
 
@@ -207,9 +209,10 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-    if checkShip(grid,ship):
-      if isHorizontal(ship) or isVertical(ship):
-        return True
+    if len(ship)==3:
+        if checkShip(grid,ship):
+            if isHorizontal(ship) or isVertical(ship):
+                return True
     return False
 
 
@@ -223,9 +226,11 @@ def placeShip(data):
     if shipIsValid(user_board,data["tempship"]):
         for i in data["tempship"]:
            user_board[i[0]][i[1]]= SHIP_UNCLICKED
+        data["userships"]+=1
     else:
       print("Ship is not valid") 
-    data["tempship"]=[]   
+    data["tempship"]=[] 
+    return 
     
 
 
