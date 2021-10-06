@@ -36,7 +36,6 @@ def makeModel(data):
     data["tempship"]= []
     data["userships"]=0 #test.testShip()#createShip()
 
-
 '''
 makeView(data, userCanvas, compCanvas)
 Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
@@ -146,8 +145,6 @@ def drawGrid(data, canvas, grid, showShips):
         canvas.create_rectangle(data["cellsize"]*col, data["cellsize"]*row, data["cellsize"]*(col+1), data["cellsize"]*(row+1), fill="yellow")
       else:
         canvas.create_rectangle(data["cellsize"]*col, data["cellsize"]*row, data["cellsize"]*(col+1), data["cellsize"]*(row+1), fill= "blue")
-    return 
- 
 
 
 ### WEEK 2 ###
@@ -356,6 +353,5 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
 
-    
     ## Finally, run the simulation to test it manually ##
     runSimulation(500, 500)
