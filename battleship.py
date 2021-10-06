@@ -66,8 +66,6 @@ def mousePressed(data, event, board):
     click =getClickedCell(data,event)
     if board == "user" :
      clickUserBoard(data, click[0], click[1])
-    
-    pass
 
 #### WEEK 1 ####
 
