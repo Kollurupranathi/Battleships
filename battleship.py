@@ -211,9 +211,10 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-    if checkShip(grid,ship):
-      if isHorizontal(ship) or isVertical(ship):
-        return True
+    if len(ship)==3:
+        if checkShip(grid,ship):
+            if isHorizontal(ship) or isVertical(ship):
+                return True
     return False
 
 
@@ -243,13 +244,12 @@ def clickUserBoard(data, row, col):
     if data["userships"]==5:
        print("You can start the game")
        return
-    if [row,col] == data["tempship"]:
+    if [row,col] in data["tempship"]:
        return 
-    #if [row,col] not in data["tempship"]:
     data["tempship"].append([row,col])
     if len(data["tempship"])==3:
         placeShip(data)   
-    return
+   
 
 
 ### WEEK 3 ###
