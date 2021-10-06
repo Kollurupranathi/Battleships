@@ -34,6 +34,7 @@ def makeModel(data):
 
     data["usergrid"]= emptyGrid(data["rows"],data["cols"])  #test.testGrid()
     data["computergrid"]= addShips(emptyGrid(data["rows"],data["cols"]),data["numships"])
+    data["tempship"]= [] #test.testShip()#createShip()
 
 
 '''
@@ -42,7 +43,10 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
-    return
+    usercanvas = drawGrid(data, userCanvas, data["usergrid"], True)
+    compcanvas = drawGrid(data, compCanvas, data["computergrid"], True)
+    emptyboard = drawShip(data, userCanvas, data["tempship"]) 
+    return 
 
 
 '''
@@ -150,16 +154,29 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isVertical(ship):
-    return
+    temp =[]
+    for i in range(len(ship)):
+        temp.append(ship[i][0])
+    temp.sort()
+    if ship[0][1]==ship[1][1]==ship[2][1] and temp[0]==temp[1]-1==temp[2]-2:
+        return True
+    return False
 
-
+  
 '''
 isHorizontal(ship)
 Parameters: 2D list of ints
 Returns: bool
 '''
 def isHorizontal(ship):
-    return
+  temp =[]
+  for i in range(len(ship)):
+        temp.append(ship[i][1])
+  temp.sort()
+  if ship[0][0]==ship[1][0]==ship[2][0] and temp[0]==temp[1]-1==temp[2]-2:
+     return True
+  return False
+    
 
 
 '''
@@ -168,7 +185,10 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    return
+     x= int(event.y)//data['cellsize']
+     y= int(event.x)//data['cellsize']
+     return [x, y]
+    
 
 
 '''
@@ -177,6 +197,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
+    for i in range(len(ship)):
+     canvas.create_rectangle(data["cellsize"]*ship[i][1], data["cellsize"]*ship[i][0], data["cellsize"]*(ship[i][1]+1), data["cellsize"]*(ship[i][0]+1), fill= "white")
     return
 
 
@@ -309,20 +331,6 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-
-    # test.testCheckShip()
-
-    # test.testMakeModel()
-
-
-    test.testMakeModel()
-
-    test.testAddShips()
-
-
-    test.testCheckShip()
-
-
-
+     test.testShip()
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+   # runSimulation(500, 500)
