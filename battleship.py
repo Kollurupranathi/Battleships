@@ -88,7 +88,6 @@ def emptyGrid(rows, cols):
     return grid
 
 
-
 '''
 createShip()
 Parameters: no parameters
@@ -115,9 +114,6 @@ def checkShip(grid, ship):
         if grid[i[0]][i[1]]!=EMPTY_UNCLICKED:
             return False
      return True
-
-   
-
 
 '''
 addShips(grid, numShips)
@@ -154,9 +150,6 @@ def drawGrid(data, canvas, grid, showShips):
                 canvas.create_rectangle(cell*col, cell*row, cell*(col+1), cell*(row+1), fill="white")
             if grid[row][col]==  SHIP_UNCLICKED and showShips== False:
                 canvas.create_rectangle(cell*col, cell*row, cell*(col+1), cell*(row+1), fill= "blue")
-   
- 
-
 
 ### WEEK 2 ###
 
@@ -381,4 +374,3 @@ if __name__ == "__main__":
     
     ## Finally, run the simulation to test it manually ##
    runSimulation(500, 500)
-   #test.testIsGameOver()
